@@ -1,0 +1,35 @@
+#DAA-5 N-QUEENS
+def is_safe(board, row, col, n):
+    for i in range(row):
+        if board[i][col] == 1:
+            return False
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+    for i, j in zip(range(row, -1, -1), range(col, n)):
+        if board[i][j] == 1:
+            return False    
+    return True
+def solve_nqueens(board, row, n):
+    if row == n:
+        return True    
+    for col in range(n):
+        if is_safe(board, row, col, n):
+            board[row][col] = 1
+            if solve_nqueens(board, row + 1, n):
+                return True    
+            board[row][col] = 0
+    return False
+
+def print_board(board):
+    for row in board:
+        print(" ".join("Q" if cell == 1 else "." for cell in row))
+
+def nqueens(n):
+    board = [[0] * n for _ in range(n)]
+    board[0][0] = 1
+    if not solve_nqueens(board, 1, n):
+        print("No solution exists.")
+    else:
+        print_board(board)
+nqueens(8)

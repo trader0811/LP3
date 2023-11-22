@@ -1,0 +1,31 @@
+#DAA-1 Fibonancci Series
+# Non-recursive program
+def nonrec(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    f0=0
+    f1=1
+    for _ in range(2,n+1):
+        f2=f0+f1
+        f0=f1
+        f1=f2
+    return f2
+
+n=10
+print("Non Recursive:")
+for i in range(n):
+    print(nonrec(i))
+    
+    
+# Recursive program
+def fib(n):
+    if n <= 1:
+        return n
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+print("Recursive:")
+for i in range(10):
+    print(fib(i))
